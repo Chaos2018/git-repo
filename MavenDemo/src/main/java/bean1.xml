@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	<!-- 直接找类的无参构造方法 -->
+	<bean id="user222" class="cn.hzd.model.crud.User">
+		<property name="username" value="longchao" />
+		<property name="password" value="123456" />
+	</bean>
+	<!-- 静态工厂创建对象 -->
+	<bean id="bean2" class="cn.hzd.bean.Bean2Factory" factory-method="getBean2"></bean>
+	<!-- 实例工厂创建对象 -->
+	<bean id="bean3Factory" class="cn.hzd.bean.Bean3Factory"></bean>
+	<bean id="bean3" factory-bean="bean3Factory" factory-method="getBean3"></bean>
+	<!-- 使用有参构造注入属性 -->
+	<!-- <bean id="bean4" class="cn.hzd.model.crud.User">
+		<constructor-arg name="username" value="1234" />
+	</bean> -->
+	<!-- bean标签的常用属性 -->
+	<!-- 1.id起名称，任意，不喜欢中文和特殊符号，可以根据id得到配置对象 2.name功能跟id相似，name可以包含特殊符号，遗留问题，兼容 
+		3.class创建对象的类所在全路径 4.scope设置类的特点singleton默认值单例，只能创建一次；prototype可以创建多次 request，session，globalSession -->
+
+	<!-- <bean id="bean5" class="cn.hzd.model.crud.User">
+		<property name="arr">
+			<list>
+				<value>张三</value>
+				<value>李四</value>
+				<value>王五</value>
+			</list>
+		</property>
+		<property name="list">
+			<list>
+				<value>张三</value>
+				<value>李四</value>
+				<value>王五</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="1" value="张三"></entry>
+				<entry key="2" value="李四"></entry>
+				<entry key="3" value="王五"></entry>
+			</map>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="username">root</prop>
+			</props>
+		</property>
+	</bean> -->
+	<!-- 1.创建对象 -->
+	<bean id="book" class="cn.hzd.aop.Book"></bean>
+	<bean id="myBook" class="cn.hzd.aop.MyBook"></bean>
+	<!-- 2.配置aop操作 -->
+	<aop:config>
+		<!-- 2.1配置切入点 -->
+		<aop:pointcut expression="execution(* cn.hzd.aop.Book.*(..))" id="pointcut1"/>
+		<!-- 2.2配置切面 ,把增强用在方法上面-->
+		<aop:aspect ref="myBook">
+		<!-- 配置增强类型；method：增强方法里面使用哪个方法作为前置 -->
+			<aop:before method="before1" pointcut-ref="pointcut1"/>
+			<aop:after method="after1" pointcut-ref="pointcut1"/>
+			<aop:around method="around1" pointcut-ref="pointcut1"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
+
