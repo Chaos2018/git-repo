@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="wrap">
-
+	<input type="hidden" value="${pageContext.request.contextPath}"/>
      <!-- header -->
          <div class="header">
        		<div class="logo"><a href="/MavenDemo"><img src="<c:url value='/resources/images/logo.gif'/>" alt="" title="" border="0" /></a></div>            

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<div id="wrap">
+		<input type="hidden" value="${pageContext.request.contextPath}"/>
 		<!-- header -->
 		<div class="header">
 			<div class="logo">
