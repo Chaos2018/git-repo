@@ -177,7 +177,7 @@
              	<div class="title"><span class="title_icon"><img src="resources/images/bullet6.gif" alt="" title="" /></span>合作伙伴</div> 
                 
                 <ul class="list">
-                <li><a href="#">成都信息工程学院</a></li>
+                <li><a href="#">成都信息工程大学</a></li>
                 <li><a href="#">清华大学出版社</a></li>
                 <li><a href="#">当当网</a></li>
                 <li><a href="#">淘宝网</a></li>
